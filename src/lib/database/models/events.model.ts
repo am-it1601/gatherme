@@ -69,6 +69,6 @@ const EventSchema = new Schema<IEvents>(
   { timestamps: true }
 );
 
-const Events = models.User || model("events", EventSchema);
+const Events = models.Event || model("events", EventSchema);
 
 export default Events;
