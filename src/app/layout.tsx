@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Gather Me!",
   description: "Find, Meet, Greet and Have Fun...",
   icons: {
-    icon: "/assets/icons/logo.svg",
+    icon: "/assets/images/logo.svg",
   },
 };
 
