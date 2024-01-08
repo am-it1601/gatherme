@@ -11,7 +11,7 @@ export default authMiddleware({
     "/api/webhook(.*)",
     "api/uploadthing",
   ],
-  ignoredRoutes: ["/api/webhooks", "api/uploadthing"],
+  ignoredRoutes: ["/api/webhook(.*)", "api/uploadthing"],
 });
 
 export const config = {
