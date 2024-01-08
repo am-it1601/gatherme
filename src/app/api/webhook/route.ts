@@ -65,7 +65,7 @@ export async function POST(req: Request) {
       clerkId: id,
       firstName: first_name,
       lastName: last_name,
-      username,
+      username: username as unknown as string,
       email: email_addresses[0].email_address,
       profile: image_url,
     };
