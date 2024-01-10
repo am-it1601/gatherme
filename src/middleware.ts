@@ -9,9 +9,9 @@ export default authMiddleware({
     "/events",
     "/events/:id",
     "/api/webhook/clerk",
-    "api/uploadthing",
+    "/api/uploadthing",
   ],
-  ignoredRoutes: ["/api/webhook/clerk", "api/uploadthing"],
+  ignoredRoutes: ["/api/webhook/clerk", "/api/uploadthing"],
 });
 
 export const config = {

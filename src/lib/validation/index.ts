@@ -9,9 +9,9 @@ export const EventFormSchema = z.object({
   location: z.string().min(3, "Location must be at least 3 characters"),
   imageUrl: z.string(),
   startDateTime: z.date(),
-  endtDateTime: z.date(),
+  endDateTime: z.date(),
   price: z.string(),
   isFree: z.boolean(),
   url: z.string().url(),
-  categoryId : z.string(),
+  categoryId: z.string(),
 });
