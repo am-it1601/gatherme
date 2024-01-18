@@ -10,8 +10,8 @@ export interface IEvents extends mongoose.Document {
   location: string;
   createdAt: Date;
   imageUrl: string;
-  startDatetime: Date;
-  endDatetime: Date;
+  startDateTime: Date;
+  endDateTime: Date;
   price: string;
   isFree: Boolean;
   url: string;
@@ -40,14 +40,13 @@ const EventSchema = new Schema<IEvents>(
       required: true,
       unique: true,
     },
-    startDatetime: {
+    startDateTime: {
       type: Date,
       required: true,
     },
-    endDatetime: {
+    endDateTime: {
       type: Date,
       required: true,
-      unique: true,
     },
     price: {
       type: String,
@@ -69,6 +68,6 @@ const EventSchema = new Schema<IEvents>(
   { timestamps: true }
 );
 
-const Events = models.Event || model("Events", EventSchema);
+const Events = models.Events || model("Events", EventSchema);
 
 export default Events;

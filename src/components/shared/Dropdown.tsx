@@ -24,12 +24,13 @@ import {
   createCategory,
   getAllCategories,
 } from "@/lib/actions/category.action";
+import { SelectItemText } from "@radix-ui/react-select";
 
 type DropdownProps = {
-  onChange: (value: string) => void;
+  onChangeHandler: (value: string) => void;
   value: any;
 };
-const Dropdown = ({ onChange, value }: DropdownProps) => {
+const Dropdown = ({ onChangeHandler, value }: DropdownProps) => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [NewCategory, setNewCategory] = useState("");
 
@@ -49,7 +50,7 @@ const Dropdown = ({ onChange, value }: DropdownProps) => {
     getCategories();
   }, []);
   return (
-    <Select onValueChange={onChange} defaultValue={value}>
+    <Select onValueChange={onChangeHandler} defaultValue={value}>
       <SelectTrigger className="select-field">
         <SelectValue placeholder="Category" />
       </SelectTrigger>
@@ -57,8 +58,8 @@ const Dropdown = ({ onChange, value }: DropdownProps) => {
         {categories.length > 0 &&
           categories.map((category) => (
             <SelectItem
-              key={category.id}
-              value={category.id}
+              key={category._id}
+              value={category._id}
               className="select-item p-regular-14">
               {category.name}
             </SelectItem>
