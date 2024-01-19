@@ -1,4 +1,5 @@
 // ====== USER PARAMS
+import { IEvents } from "@/lib/database/models/events.model";
 export type CreateUserParams = {
   clerkId: string;
   firstName: string;
@@ -147,3 +148,6 @@ export type SearchParamProps = {
   params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
+
+export type COLLECTION_TYPE = "ALL" | "ORGANIZED" | "USER";
+export type EventPageResponse = { totalPages: number; data: IEvents[] };

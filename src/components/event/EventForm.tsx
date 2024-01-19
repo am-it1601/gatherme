@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { eventDefaultValues } from "@/constants";
 import Dropdown from "./Dropdown";
 import { Textarea } from "../ui/textarea";
-import FileUploader from "./FileUploader";
+import FileUploader from "../shared/FileUploader";
 import { useState } from "react";
 import Image from "next/image";
 import DatePicker from "react-datepicker";

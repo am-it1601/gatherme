@@ -56,6 +56,7 @@ const EventSchema = new Schema<IEvents>(
       default: false,
     },
     url: String,
+    imageUrl: String,
     category: {
       type: Schema.Types.ObjectId,
       ref: "Category",

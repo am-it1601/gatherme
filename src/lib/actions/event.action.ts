@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import { connectToDatabase } from "@/lib/database";
-import Event from "@/lib/database/models/events.model";
+import Event, { IEvents } from "@/lib/database/models/events.model";
 import User from "@/lib/database/models/user.model";
 import Category from "@/lib/database/models/category.model";
 import { handleError } from "@/lib/utils";
@@ -15,6 +15,7 @@ import {
   GetAllEventsParams,
   GetEventsByUserParams,
   GetRelatedEventsByCategoryParams,
+  EventPageResponse,
 } from "@/types";
 
 const getCategoryByName = async (name: string) => {
@@ -58,11 +59,11 @@ export async function getEventById(eventId: string) {
   try {
     await connectToDatabase();
 
-    const event = await populateEvent(Event.findById(eventId));
+    const event: IEvents = await populateEvent(Event.findById(eventId));
 
     if (!event) throw new Error("Event not found");
 
-    return JSON.parse(JSON.stringify(event));
+    return JSON.parse(JSON.stringify(event)) as IEvents;
   } catch (error) {
     handleError(error);
   }
@@ -104,12 +105,12 @@ export async function deleteEvent({ eventId, path }: DeleteEventParams) {
 }
 
 // GET ALL EVENTS
-export async function getAllEvents({
+export const getAllEvents = async ({
   query,
   limit = 6,
   page,
   category,
-}: GetAllEventsParams) {
+}: GetAllEventsParams): Promise<EventPageResponse> => {
   try {
     await connectToDatabase();
 
@@ -142,7 +143,8 @@ export async function getAllEvents({
   } catch (error) {
     handleError(error);
   }
-}
+  return {} as EventPageResponse;
+};
 
 // GET EVENTS BY ORGANIZER
 export async function getEventsByUser({
