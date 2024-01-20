@@ -25,14 +25,27 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useUploadThing } from "@/lib/uploadthing";
 import { useRouter } from "next/navigation";
-import { createEvent } from "@/lib/actions/event.action";
+import { createEvent, updateEvent } from "@/lib/actions/event.action";
+import { IEvents } from "@/lib/database/models/events.model";
 
 type EventFormProps = {
   userId: string;
-  type: "Create" | "Update";
-};
-const EventForm = ({ userId, type }: EventFormProps) => {
-  const initialValue = eventDefaultValues;
+} & (
+  | {
+      type: "Create";
+    }
+  | { type: "Update"; event: IEvents; eventId: string }
+);
+const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
+  const initialValue = event
+    ? {
+        ...event,
+        startDateTime: new Date(event.startDateTime),
+        endDateTime: new Date(event.endDateTime),
+        categoryId: event.category._id,
+      }
+    : eventDefaultValues;
+
   const [files, setFiles] = useState<File[]>([]);
 
   const router = useRouter();
@@ -67,6 +80,16 @@ const EventForm = ({ userId, type }: EventFormProps) => {
         console.error(e);
       }
     } else {
+      if (!eventId) router.back();
+      const editEvent = await updateEvent({
+        userId,
+        event: { ...values, imageUrl: uploadedImageUrl, _id: eventId },
+        path: `/events/${eventId}`,
+      });
+      if (editEvent) {
+          form.reset();
+          router.push(`/events/${editEvent._id}`);
+        }
     }
     // Do something with the form values.
     // ✅ This will be type-safe and validated.

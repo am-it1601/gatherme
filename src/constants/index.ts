@@ -31,6 +31,9 @@ export const Messages = {
     "Our event search came up empty, but we're not giving up. Neither should you!",
   NO_EVENT_DATA_SUBTEXT:
     "Don't worry,We're on a mission to bring you the best ones!",
+  DELETE_CONFIRMATION_TITLE: "Deleting your event?",
+  DELETE_CONFIRMATION_DESCRIPTION:
+    "We can't undo the magic once it's gone. Think twice!",
 };
 
 export const APP_CONSTANTS = {

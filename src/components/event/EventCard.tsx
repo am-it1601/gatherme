@@ -1,9 +1,11 @@
 import { IEvents } from "@/lib/database/models/events.model";
 import { formatDateTime } from "@/lib/utils";
+import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
 import React from "react";
+import { DeleteEvent } from "./DeleteEvent";
 
 type EventCardProps = {
   event: IEvents;
@@ -15,6 +17,9 @@ const EventCard = ({
   isOrderLinked = false,
   hidePrice = false,
 }: EventCardProps) => {
+  const { sessionClaims } = auth();
+  const userId = sessionClaims?.userId?.userId;
+  const isCreator = userId === event.organizer._id.toString();
   return (
     <div
       className="group relative flex min-h-[380px] 
@@ -27,6 +32,19 @@ const EventCard = ({
         className="flex-grow w-full bg-center bg-cover text-grey-500 flex-center bg-grey-50"
       />
       {/* IS EVENT CREATE */}
+      {isCreator && !hidePrice && (
+        <div className="absolute top-2 right-2 flex flex-col gap-4 rounded-xl bg-white p-3 shadow-sm transition-all hover:scale-110 hover:shadow-md ">
+          <Link href={`/events/${event._id}/update`}>
+            <Image
+              src="/assets/icons/edit.svg"
+              width={20}
+              height={20}
+              alt="edit"
+            />
+          </Link>
+          <DeleteEvent eventId={event._id} />
+        </div>
+      )}
       <div className="flex min-h-[230px] flex-col gap-3 p-5 md:gap-4">
         {!hidePrice && (
           <div className="flex gap-2">
