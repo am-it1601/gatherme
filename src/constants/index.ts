@@ -34,6 +34,9 @@ export const Messages = {
   DELETE_CONFIRMATION_TITLE: "Deleting your event?",
   DELETE_CONFIRMATION_DESCRIPTION:
     "We can't undo the magic once it's gone. Think twice!",
+  RELATED_EVENT_CATEGORY_TITLE: "From the Same Genre...",
+  RELATED_EVENT_CATEGORY_TEXT:
+    "Discover Similar Adventures Awaiting You!!",
 };
 
 export const APP_CONSTANTS = {

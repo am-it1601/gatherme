@@ -8,7 +8,7 @@ import React from "react";
 
 const UpdateEvent = async ({ params: { id } }: SearchParamProps) => {
   const { sessionClaims } = auth();
-  const userId = sessionClaims.userId?.userId as string;
+  const userId = sessionClaims?.userId?.userId as string;
   const event = (await getEventById(id)) as IEvents;
   return (
     <>
