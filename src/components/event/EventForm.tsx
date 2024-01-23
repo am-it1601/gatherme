@@ -28,14 +28,15 @@ import { useRouter } from "next/navigation";
 import { createEvent, updateEvent } from "@/lib/actions/event.action";
 import { IEvents } from "@/lib/database/models/events.model";
 
-type EventFormProps = {
-  userId: string;
-} & (
+type EventFormProps =
   | {
+      userId: string;
       type: "Create";
+      event: undefined;
+      eventId: undefined;
     }
-  | { type: "Update"; event: IEvents; eventId: string }
-);
+  | { userId: string; type: "Update"; event: IEvents; eventId: string };
+
 const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
   const initialValue = event
     ? {
@@ -87,9 +88,9 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
         path: `/events/${eventId}`,
       });
       if (editEvent) {
-          form.reset();
-          router.push(`/events/${editEvent._id}`);
-        }
+        form.reset();
+        router.push(`/events/${editEvent._id}`);
+      }
     }
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
