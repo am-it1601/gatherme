@@ -20,7 +20,7 @@ const EventDetails = async ({
   const event = (await getEventById(id)) as IEvents;
 
   const relatedEvents = await getRelatedEventsByCategory({
-    categoryId: event.category._id,
+    categoryId: event?.category?._id,
     eventId: event._id,
     page: searchParams.page as string,
   });
@@ -47,7 +47,7 @@ const EventDetails = async ({
                     {event.isFree ? "FREE" : `$${event.price}`}
                   </p>
                   <p className="px-4 py-2.5 rounded-full p-medium-16 bg-grey-500/10 text-grey-500'">
-                    {event.category.name}
+                    {event.category?.name}
                   </p>
                 </div>
 
