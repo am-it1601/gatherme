@@ -1,6 +1,7 @@
 // import CheckoutButton from "@/components/shared/CheckoutButton";
 // import Collection from "@/components/shared/Collection";
 import Collection from "@/components/event/Collection";
+import CheckoutButton from "@/components/shared/CheckoutButton";
 import { Messages } from "@/constants";
 import {
   getEventById,
@@ -59,7 +60,7 @@ const EventDetails = async ({
               </div>
             </div>
 
-            {/* {Checkout Button} */}
+            <CheckoutButton event={event} />
 
             <div className="flex flex-col gap-5">
               <div className="flex gap-2 md:gap-3">
@@ -107,8 +108,8 @@ const EventDetails = async ({
       </section>
       <section className="wrapper my-8 flex flex-col gap-8 md:gap-12">
         <div className="flex flex-col gap-2">
-        <h2 className="h2-bold">{Messages.RELATED_EVENT_CATEGORY_TITLE}</h2>
-        <p className='p-regular-18'>{Messages.RELATED_EVENT_CATEGORY_TEXT}</p>
+          <h2 className="h2-bold">{Messages.RELATED_EVENT_CATEGORY_TITLE}</h2>
+          <p className="p-regular-18">{Messages.RELATED_EVENT_CATEGORY_TEXT}</p>
         </div>
         <Collection
           data={relatedEvents?.data}

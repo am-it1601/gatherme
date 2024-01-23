@@ -1,4 +1,4 @@
-import { SignIn, SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignIn, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -25,6 +25,7 @@ const Header = () => {
         <div className="flex w-32 justify-end gap-3">
           {/* Clerk Setup  */}
           <SignedIn>
+            <UserButton afterSignOutUrl="/" />
             <MobileNav />
           </SignedIn>
           <SignedOut>
