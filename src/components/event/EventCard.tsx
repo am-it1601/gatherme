@@ -18,7 +18,7 @@ const EventCard = ({
   hidePrice = false,
 }: EventCardProps) => {
   const { sessionClaims } = auth();
-  const userId = sessionClaims?.userId?.userId;
+  const userId = sessionClaims?.userId;
   const isCreator = userId === event.organizer._id.toString();
   return (
     <div
