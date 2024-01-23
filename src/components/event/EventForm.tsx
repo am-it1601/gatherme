@@ -32,8 +32,8 @@ type EventFormProps =
   | {
       userId: string;
       type: "Create";
-      event: undefined;
-      eventId: undefined;
+      event?: undefined;
+      eventId?: undefined;
     }
   | { userId: string; type: "Update"; event: IEvents; eventId: string };
 
@@ -53,7 +53,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
   const { startUpload } = useUploadThing("imageUploader");
   const form = useForm<z.infer<typeof EventFormSchema>>({
     resolver: zodResolver(EventFormSchema),
-    defaultValues: initialValue,
+    defaultValues: { ...initialValue, isFree: initialValue.isFree.valueOf() },
   });
 
   // 2. Define a submit handler.
