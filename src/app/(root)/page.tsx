@@ -4,12 +4,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { APP_CONSTANTS, Messages } from "@/constants";
 import { getAllEvents } from "@/lib/actions/event.action";
+import Search from "@/components/shared/Search";
+import { SearchParamProps } from "@/types";
+import CategoryFilter from "@/components/shared/CategoryFilter";
 
-export default async function Home() {
+export default async function Home({ searchParams }: SearchParamProps) {
+  const page = Number(searchParams.page) || 1;
+  const searchText = (searchParams.query as string) || "";
+  const category = (searchParams.category as string) || "";
   const allEvents = await getAllEvents({
-    query: "",
-    category: "",
-    page: 1,
+    query: searchText,
+    category,
+    page,
     limit: APP_CONSTANTS.DEFAULT_PAGE_SIZE,
   });
   return (
@@ -44,7 +50,8 @@ export default async function Home() {
           Thousand Voices, One Choice <br /> Make Us Yours for Events
         </h2>
         <div className="flex flex-col w-full gap-5 md:flex-row">
-          Search Category Filter{" "}
+          <Search placeholder="Search Upcoming Events.." />
+          <CategoryFilter />
         </div>
         <Collection
           data={allEvents.data}
@@ -53,7 +60,7 @@ export default async function Home() {
           collectionType={"ALL"}
           limit={10}
           page={1}
-          totalPages={2}
+          totalPages={allEvents?.totalPages}
         />
       </section>
     </>

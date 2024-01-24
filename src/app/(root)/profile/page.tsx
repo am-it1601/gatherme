@@ -40,7 +40,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           titleIfEmpty={Messages.NO_EVENT_DATA}
           messageIfEmpty={Messages.NO_EVENT_DATA_SUBTEXT}
           collectionType={"USER"}
-          limit={3}
+          limit={6}
           page={ordersPage}
           totalPages={orders?.totalPages}
           urlParamName="ordersPage"
@@ -59,7 +59,7 @@ const ProfilePage = async ({ searchParams }: SearchParamProps) => {
           data={organizedEvents?.data}
           titleIfEmpty={Messages.NO_EVENT_DATA}
           messageIfEmpty={Messages.NO_EVENT_DATA_SUBTEXT}
-          collectionType={"USER"}
+          collectionType={"ORGANIZED"}
           limit={6}
           page={eventPage}
           totalPages={organizedEvents?.totalPages}

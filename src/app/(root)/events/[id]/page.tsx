@@ -116,9 +116,9 @@ const EventDetails = async ({
           titleIfEmpty={Messages.NO_EVENT_DATA}
           messageIfEmpty={Messages.NO_EVENT_DATA_SUBTEXT}
           collectionType="ALL"
-          limit={10}
-          page={1}
-          totalPages={2}
+          limit={6}
+          page={searchParams.page as string}
+          totalPages={relatedEvents?.totalPages}
         />
       </section>
     </>
